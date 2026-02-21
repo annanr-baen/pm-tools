@@ -1,0 +1,74 @@
+schema: spec-driven
+
+context: |
+  # PM Tools — Project Management Kanban Board
+
+  ## Tech Stack
+  - **Framework**: Next.js 16 (App Router, monolith architecture)
+  - **Language**: TypeScript 5 (strict mode enabled)
+  - **UI Runtime**: React 19
+  - **Styling**: Tailwind CSS v4 (using `@import "tailwindcss"` + `@theme inline` in `app/globals.css`, PostCSS plugin `@tailwindcss/postcss`)
+  - **UI Components**: shadcn/ui (Radix-based, copy-paste component model, stored in `components/ui/`)
+  - **Linting**: ESLint 9 flat config with `eslint-config-next` (core-web-vitals + typescript)
+  - **Path alias**: `@/*` maps to project root (`./`)
+
+  ## Architecture & Conventions
+  - **Monolith**: All frontend, API routes, and business logic live in a single Next.js app
+  - **App Router**: Use `app/` directory with file-based routing (`page.tsx`, `layout.tsx`, `loading.tsx`, `error.tsx`)
+  - **Server Components by default**: Use `"use client"` only when the component needs interactivity, browser APIs, or React hooks
+  - **API Routes**: Use Route Handlers in `app/api/` (`route.ts`) — no `pages/api`
+  - **Data layer**: Server Actions or Route Handlers for mutations; React Server Components for reads
+
+  ## Naming & File Conventions
+  - **Files**: `kebab-case` for all files and directories (e.g., `task-card.tsx`, `board-column.tsx`)
+  - **Components**: PascalCase exports (e.g., `export function TaskCard()`)
+  - **Types/Interfaces**: PascalCase, prefix with descriptive noun (e.g., `Task`, `BoardColumn`, `KanbanBoard`)
+  - **Constants**: UPPER_SNAKE_CASE (e.g., `BOARD_STATUSES`)
+  - **Hooks**: camelCase with `use` prefix (e.g., `useTasks`, `useDragAndDrop`)
+  - **Commits**: Conventional commits (`feat:`, `fix:`, `chore:`, `refactor:`, `docs:`, `style:`, `test:`)
+
+  ## Project Structure (target)
+  ```
+  app/                    # Next.js App Router pages & layouts
+    (dashboard)/          # Route group for main dashboard
+    api/                  # API route handlers
+  components/
+    ui/                   # shadcn/ui primitives (Button, Card, Dialog, etc.)
+    kanban/               # Kanban-specific components (Board, Column, TaskCard, etc.)
+  lib/                    # Shared utilities, helpers, constants
+  types/                  # Shared TypeScript type definitions
+  hooks/                  # Custom React hooks
+  public/                 # Static assets
+  ```
+
+  ## Style Guide
+  - Use Tailwind CSS v4 utility classes for styling; avoid inline `style` attributes
+  - Follow shadcn/ui patterns: compose primitives, use CSS variables for theming (`--background`, `--foreground`, `--primary`, etc.)
+  - Support dark mode via CSS `prefers-color-scheme` or a theme toggle using CSS variables
+  - Responsive design: mobile-first approach using Tailwind breakpoints (`sm:`, `md:`, `lg:`)
+  - Use `cn()` helper (from `lib/utils.ts`) to merge Tailwind classes conditionally
+
+  ## Domain Knowledge
+  - **Domain**: Simple project management / task tracking tool with Kanban board
+  - **Core entity**: Task — has a title, description, status, priority, assignee, created/updated timestamps
+  - **Board statuses (columns)**: `Backlog` → `Todo` → `In Progress` → `Done`
+  - **Key interactions**:
+    - Drag-and-drop tasks between columns to change status
+    - Create, edit, and delete tasks
+    - Filter/sort tasks by priority, assignee, or date
+  - **Users**: Small team collaboration — users can be assigned to tasks
+  - **No external auth yet**: Start with simple local state or database; auth can be added later
+
+rules:
+  proposal:
+    - Keep proposals concise and focused on the specific change
+    - Always include a "Non-goals" section to clarify scope boundaries
+    - Reference existing board statuses (Backlog, Todo, In Progress, Done) when relevant
+  tasks:
+    - Break tasks into chunks of max 2 hours of work
+    - Each task should be independently testable or verifiable
+    - Prefer server components unless client interactivity is explicitly needed
+  spec:
+    - Use TypeScript interfaces for all data models
+    - Include API route signatures when defining backend changes
+    - Reference shadcn/ui component names when applicable
