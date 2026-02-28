@@ -1,0 +1,17 @@
+
+{
+    "main" : [
+            {
+                "name": "Home",
+                "icon": "Home",
+                "link": "/"
+            },
+            {
+                "name": "Home",
+                "icon": "Home",
+                "link": "/"
+            }
+        ],
+    "teamspaces" : [],
+    "Projects" : []
+}
