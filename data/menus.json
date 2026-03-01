@@ -7,8 +7,33 @@
                 "link": "/"
             },
             {
-                "name": "Home",
-                "icon": "Home",
+                "name": "Inbox",
+                "icon": "Inbox",
+                "link": "/"
+            },
+            {
+                "name": "Projects",
+                "icon": "Briefcase",
+                "link": "/"
+            },
+            {
+                "name": "Teamspaces",
+                "icon": "Users",
+                "link": "/"
+            },
+            {
+                "name": "Initiatives",
+                "icon": "Lightbulb",
+                "link": "/"
+            },
+            {
+                "name": "Dashboard",
+                "icon": "LayoutDashboard",
+                "link": "/"
+            },
+            {
+                "name": "More",
+                "icon": "Ellipsis",
                 "link": "/"
             }
         ],

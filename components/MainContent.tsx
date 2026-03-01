@@ -1,7 +1,8 @@
 import { Button } from "./ui/button";
 // import { Input } from "./ui/input";
-import { SquarePen, Search, House, Inbox, Briefcase, Users2 } from "lucide-react";
+import { SquarePen, Search, House, Inbox, Briefcase, Users2, Ellipsis, Layers, Circle, Wifi, Rocket, AlarmClockCheck } from "lucide-react";
 import menus from "@/data/menus.json";
+import KanbanBoard from "@/components/Kanban/KanbanBoard";
 
 interface MenuItemPropsMC {
     icon: React.ReactNode;
@@ -10,7 +11,7 @@ interface MenuItemPropsMC {
 }
 
 function MenuItemMc({ icon, label, active = false } : MenuItemPropsMC) {
-    const activeClass = active ? "bg-slate-400 text-black" : "text-slate-600 ";
+    const activeClass = active ? "bg-slate-100 text-black rounded-md" : "text-slate-600 ";
 
     return (
         <div className={`group w-full h-10 text-left flex flex-row justify-start space-x-1 items-center ${activeClass} group-hover:bg-gray-200 transition-all duration-300`}>
@@ -47,7 +48,7 @@ function MainContent() {
                     <MenuItemMc icon={<Inbox className="w-5 h-5" />} label="Inbox" />
                     <MenuItemMc icon={<Briefcase className="w-5 h-5" />} label="Projects" />
                     <MenuItemMc icon={<Users2 className="w-5 h-5" />} label="Teamspaces" />
-                    <MenuItemMc icon={<House className="w-5 h-5" />} label="Home" />
+                    <MenuItemMc icon={<Ellipsis className="w-5 h-5" />} label="More" />
                     {/* <MenuItemMc icon={<House className="w-5 h-5" />} label="Home" />
                     <MenuItemMc icon={<House className="w-5 h-5" />} label="Home" />
                     <MenuItemMc icon={<House className="w-5 h-5" />} label="Home" /> */}
@@ -57,29 +58,28 @@ function MainContent() {
 
                 <div id="teamSpace" className="flex flex-col space-y-1">
                     <p className="text-sm font-semibold text-gray-500">Teamspaces</p>
-                    <MenuItemMc icon={<House className="w-5 h-5" />} label="Home" />
+                    <MenuItemMc icon={<Search className="w-5 h-5" />} label="Marketing" />
                 </div>
 
                 <br />
 
                 <div id="Projects" className="flex flex-col">
                     <p className="text-sm font-semibold text-gray-500">Projects</p>
-                    <MenuItemMc icon={<House className="w-5 h-5" />} label="Home" />
+                    <MenuItemMc icon={<Rocket className="w-5 h-5" />} label="Auto-campaigns launch" />
 
                         <div id="hover" className="flex flex-col space-y-1 p-2">
-                            <MenuItemMc icon={<House className="w-5 h-5" />} label="Home" />
-                            <MenuItemMc icon={<House className="w-5 h-5" />} label="Home" />
-                            <MenuItemMc icon={<House className="w-5 h-5" />} label="Home" active />
-                            <MenuItemMc icon={<House className="w-5 h-5" />} label="Home" />
+                            <MenuItemMc icon={<Wifi className="w-5 h-5" />} label="Overview" />
+                            <MenuItemMc icon={<Layers className="w-5 h-5" />} label="Work items" active />
+                            <MenuItemMc icon={<Circle className="w-5 h-5" />} label="Cycles" />
                         </div>
 
-                    <MenuItemMc icon={<House className="w-5 h-5" />} label="Home" />
+                    <MenuItemMc icon={<AlarmClockCheck className="w-5 h-5" />} label="Home" />
                 </div>
 
             </div>
 
-            <div id="Content" className="w-full h-full border-r bg-gray-400 flex-1 rounded-lg shadow-lg">
-
+            <div id="Content" className="w-full h-full bg-gray-200 flex-1 shadow-lg">
+                <KanbanBoard />
             </div>
         </main>
     );

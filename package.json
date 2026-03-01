@@ -10,6 +10,9 @@
     "ui:add": "npx shadcn@latest add"
   },
   "dependencies": {
+    "@dnd-kit/abstract": "^0.3.2",
+    "@dnd-kit/helpers": "^0.3.2",
+    "@dnd-kit/react": "^0.3.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.575.0",
